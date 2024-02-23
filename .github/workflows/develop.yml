@@ -16,8 +16,3 @@ jobs:
           persist-credentials: false
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Change directory and pull
-        run: |
-          cd ${{ secrets.SERVER_DEPLOY_DIR }}
-          git pull
