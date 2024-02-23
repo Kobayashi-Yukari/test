@@ -15,7 +15,6 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
           clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Change directory and pull
         run: |
