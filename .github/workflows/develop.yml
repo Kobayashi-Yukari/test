@@ -17,18 +17,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            git pull
-jobs:
-  check-bats-version:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "this is pen"
-      - uses: actions/checkout@v4
-      - run:
-      echo {{ secrets.SERVER_HOST }}
-      echo ${{ secrets.SERVER_USERNAME }}
-        echo ${{ secrets.SSH_PORT }}
-          echo ${{ secrets.SSH_PRIVATE_KEY }}
-          echo ${{ secrets.SERVER_DEPLOY_DIR }}
-          
+            echo ${{ secrets.SERVER_DEPLOY_DIR }}
