@@ -19,5 +19,5 @@ jobs:
 
       - name: Change directory and pull
         run: |
-          cd ${{ secrets.SERVER_DEPLOY_DIR }}
+          cd /home/c3039616/public_html/pompon-blog.com/test/
           git pull origin main
