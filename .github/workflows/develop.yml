@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
-        uses: checkout@latest_version
+        uses: actions/checkout@latest_version
         with:
           fetch-depth: 0
           persist-credentials: false
