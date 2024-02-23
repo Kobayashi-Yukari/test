@@ -12,14 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa -H $SERVER_HOST >> ~/.ssh/known_hosts
-
       - name: Deploy
         run: |
           ssh -p $SSH_PORT $SERVER_USERNAME@$SERVER_HOST "cd $SERVER_DEPLOY_DIR && git pull origin main"
