@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -19,5 +19,4 @@ jobs:
 
       - name: Change directory and pull
         run: |
-          cd /home/c3039616/public_html/pompon-blog.com/test/
-          git pull origin main
+          cd /home/c3039616/public_html/pompon-blog.com/test/ && git pull origin main
