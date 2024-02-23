@@ -15,7 +15,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
           clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Change directory and pull
         run: |
-          cd /home/c3039616/public_html/pompon-blog.com/test/ && git pull origin main
+          cd /home/c3039616/public_html/pompon-blog.com/test/
