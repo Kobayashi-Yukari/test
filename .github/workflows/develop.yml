@@ -12,10 +12,12 @@ jobs:
       - name: Deploy
         uses: actions/checkout@v2
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          port: ${{ secrets.SSH_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd ${{ secrets.SERVER_DEPLOY_DIR }}
-            git pull
+          fetch-depth: 0
+          persist-credentials: false
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Change directory and pull
+        run: |
+          cd ${{ secrets.SERVER_DEPLOY_DIR }}
+          git pull
