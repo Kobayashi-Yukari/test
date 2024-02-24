@@ -1,22 +1,23 @@
 name: CI
 
 on:
-  push:
+push:
     branches:
-      - main
+        - main
 
 jobs:
-  build:
+    build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy
+        - name: Deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          port: ${{ secrets.REMOTE_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
+            host: ${{ secrets.REMOTE_HOST }}
+            username: ${{ secrets.REMOTE_USER }}
+            port: ${{ secrets.REMOTE_PORT }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            script: |
+            echo ${{ secrets.REMOTE_PATH }}
             cd ${{ secrets.REMOTE_PATH }}
             git pull origin main
