@@ -1,4 +1,4 @@
-name: deploy to ConoHa WING
+name: Pull changes to public/test
 
 on:
   push:
@@ -6,24 +6,13 @@ on:
       - main
 
 jobs:
-  deploy:
+  pull_changes:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: SSH key generate
-        run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Rsync deployments
-        uses: burnett01/rsync-deployments@5.1
-        with:
-          switches: -avz --delete
-          path: ${{ github.workspace }}/theme/
-          remote_path: ${{ secrets.REMOTE_PATH }}
-          remote_host: ${{ secrets.REMOTE_HOST }}
-          remote_user: ${{ secrets.REMOTE_USER }}
-          remote_port: ${{ secrets.REMOTE_PORT }}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Pull latest changes to public/test
+        run: |
+          cd public/test
+          git pull origin main
