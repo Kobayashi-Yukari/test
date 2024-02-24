@@ -1,4 +1,4 @@
-name: Pull changes to public/test
+name: CI
 
 on:
   push:
@@ -6,13 +6,18 @@ on:
       - main
 
 jobs:
-  pull_changes:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
-      - name: Pull latest changes to public/test
-        run: |
-          cd public/test
-          git pull origin main
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          port: ${{ secrets.REMOTE_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          script: |
+            cd ${{ secrets.REMOTE_PATH }}
+            git pull origin main
